@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Will Robinson — Central Defender | The Core 4</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ═══ HOME — page-specific ═══ */
+    .page { max-width: 1180px; margin: 0 auto; padding: 48px 40px 0; }
+
+    /* HERO — photo LEFT, text right (deliberately mirrored vs the usual) */
+    .hero { margin-bottom: 52px; display: grid; grid-template-columns: 1fr 1.45fr; gap: 44px; align-items: center; }
+    .hero-photo {
+      aspect-ratio: 3/4; border-radius: 16px; overflow: hidden;
+      background: var(--card); border: 1px solid var(--border-lt);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.28); max-height: 380px;
+      justify-self: start; width: 100%; max-width: 300px;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 12px;
+      font-size: 11px; font-weight: 700; letter-spacing: 2.4px;
+      color: var(--gold); text-transform: uppercase; margin-bottom: 16px;
+    }
+    .hero-eyebrow::before { content: ''; width: 40px; height: 3px; background: var(--gold); border-radius: 2px; }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(34px, 5.2vw, 52px); font-weight: 400;
+      line-height: 1.04; color: #fff; text-transform: uppercase;
+      letter-spacing: 0.5px; margin-bottom: 16px;
+    }
+    .hero h1 span { color: var(--gold); }
+    .hero-sub { font-size: 16px; color: rgba(255,255,255,0.9); line-height: 1.68; margin-bottom: 26px; max-width: 540px; }
+    .hero-sub strong { color: #fff; font-weight: 700; }
+    .hero-stats {
+      display: flex; gap: 10px; flex-wrap: wrap;
+    }
+    .hero-stat {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 10px; padding: 12px 20px; text-align: center;
+      backdrop-filter: blur(6px);
+    }
+    .hero-stat strong { display: block; font-family: var(--font-display); font-size: 1.35rem; font-weight: 400; color: #fff; }
+    .hero-stat small { font-size: 0.56rem; color: rgba(255,255,255,0.65); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; }
+    .hero-stat.is-ph strong { color: rgba(255,255,255,0.4); }
+
+    /* SECTION LABELS on dark */
+    .on-dark-label {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 11px; font-weight: 700; letter-spacing: 2.2px;
+      color: var(--gold); text-transform: uppercase; margin-bottom: 8px;
+    }
+    .on-dark-label::before { content: ''; width: 34px; height: 3px; background: var(--gold); border-radius: 2px; }
+    .on-dark-h2 { font-family: var(--font-display); font-size: 24px; font-weight: 400; color: #fff; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+    .on-dark-p { font-size: 14.5px; color: rgba(255,255,255,0.88); line-height: 1.6; max-width: 620px; }
+
+    /* ═══ THE CORE 4 HUB — four quadrant petals around a centre disc ═══ */
+    .hub { position: relative; margin-bottom: 56px; }
+    .hub-label { margin-bottom: 30px; }
+    .hub-stage {
+      position: relative; width: 100%; max-width: 720px;
+      margin: 0 auto; aspect-ratio: 1 / 1;
+    }
+    .hub-svg { width: 100%; height: 100%; display: block; overflow: visible; }
+    .hub-svg .petal { cursor: pointer; }
+    .hub-svg .petal-fill { transition: opacity 0.22s ease; }
+    .hub-svg .petal-stroke { stroke: rgba(255,255,255,0.16); stroke-width: 1.5; fill: none; transition: stroke 0.22s ease, stroke-width 0.22s ease; }
+    .hub-svg .petal:hover .petal-fill { opacity: 0.85; }
+    .hub-svg .petal:hover .petal-stroke { stroke: var(--gold); stroke-width: 3; }
+    .hub-svg .petal-roundel { transition: transform 0.22s ease; transform-origin: center; transform-box: fill-box; }
+    .hub-svg .petal:hover .petal-roundel { transform: scale(1.12); }
+    .hub-svg .petal-title {
+      font-family: var(--font-display);
+      font-size: 17px; font-weight: 400;
+      fill: #fff; text-transform: uppercase; letter-spacing: 0.8px;
+      paint-order: stroke; stroke: rgba(10,9,6,0.55); stroke-width: 3; stroke-linejoin: round;
+      pointer-events: none;
+    }
+    .hub-svg .petal-num {
+      font-family: var(--font-display); font-size: 15px;
+      fill: #0B0A08; pointer-events: none;
+    }
+
+    /* Centre disc — HTML overlay */
+    .hub-center {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 35%; aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      background: var(--card);
+      border: 3px solid var(--gold);
+      box-shadow: 0 12px 38px rgba(0,0,0,0.4);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 5%;
+      text-decoration: none; color: inherit;
+      z-index: 5;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .hub-center:hover { transform: translate(-50%, -50%) scale(1.03); box-shadow: 0 16px 44px rgba(0,0,0,0.5); }
+    .hub-center .num { font-family: var(--font-display); font-size: clamp(34px, 5.5vw, 52px); font-weight: 400; color: var(--coal); line-height: 1; margin-bottom: 4px; }
+    .hub-center .lbl { font-family: var(--font-display); font-size: 11px; font-weight: 400; color: var(--text); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; }
+    .hub-center .sub { font-size: 11.5px; color: var(--text-sec); line-height: 1.45; max-width: 92%; font-weight: 500; }
+    .hub-center .cta { font-size: 11px; font-weight: 700; color: var(--gold-deep); margin-top: 10px; letter-spacing: 0.3px; }
+
+    /* Mobile fallback — stacked tiles */
+    .hub-mobile { display: none; }
+    .hub-mobile .m-center {
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      background: var(--card); border-radius: 12px; padding: 18px;
+      text-decoration: none; color: inherit; text-align: center;
+      border: 2px solid var(--gold); margin-bottom: 10px;
+    }
+    .hub-mobile .m-center .num { font-family: var(--font-display); font-size: 34px; color: var(--coal); line-height: 1; }
+    .hub-mobile .m-center .lbl { font-family: var(--font-display); font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text); }
+    .hub-mobile .m-center .cta { font-size: 11px; font-weight: 700; color: var(--gold-deep); }
+    .hub-mobile-list { display: grid; gap: 10px; }
+    .m-tile {
+      display: flex; align-items: center; gap: 14px;
+      background: var(--card); border: 1px solid var(--border-lt);
+      border-radius: 12px; padding: 14px 16px;
+      text-decoration: none; color: inherit;
+    }
+    .m-tile-num {
+      flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--coal), var(--coal-mid));
+      border: 2px solid var(--gold);
+      color: #fff; font-family: var(--font-display); font-size: 15px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .m-tile-body h3 { font-size: 13px; font-weight: 800; color: var(--text); margin-bottom: 2px; line-height: 1.3; }
+    .m-tile-body p { font-size: 11px; color: var(--text-muted); line-height: 1.4; }
+
+    /* NUMBERS PLACEHOLDER STRIP */
+    .numbers-section { margin-bottom: 52px; }
+    .numbers-card {
+      background: var(--card); border: 1px solid var(--border-lt);
+      border-top: 3px solid var(--gold);
+      border-radius: 16px; padding: 30px 32px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+    }
+    .numbers-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 18px; }
+
+    /* EXPLORE */
+    .explore { margin-bottom: 52px; }
+    .explore-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 20px; }
+    .explore-card {
+      display: block; padding: 22px 20px; background: var(--card);
+      border: 1px solid var(--border-lt); border-radius: 12px;
+      text-decoration: none; color: inherit;
+      transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+    }
+    .explore-card:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(0,0,0,0.22); border-color: var(--gold); }
+    .explore-card i { color: var(--coal); font-size: 0.9rem; margin-bottom: 10px; display: block; }
+    .explore-card h3 { font-size: 13.5px; font-weight: 800; color: var(--text); margin-bottom: 4px; }
+    .explore-card p { font-size: 11.5px; color: var(--text-sec); line-height: 1.5; }
+
+    /* CONTACT */
+    .contact-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 48px; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-photo { max-width: 260px; justify-self: center; }
+      .explore-grid { grid-template-columns: repeat(2, 1fr); }
+      .numbers-grid { grid-template-columns: repeat(2, 1fr); }
+      .contact-row { grid-template-columns: 1fr; }
+      .page { padding: 40px 22px 0; }
+    }
+    @media (max-width: 680px) {
+      .hub-svg .petal-title { font-size: 15px; }
+    }
+    @media (max-width: 560px) {
+      .hub-stage { display: none; }
+      .hub-mobile { display: block; }
+      .explore-grid { grid-template-columns: 1fr; }
+      .numbers-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="wrap">
+    <a href="index.html" class="nav-brand">Will <em>Robinson</em></a>
+    <button class="nav-ham" id="navHam"><i class="fas fa-bars"></i></button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="on">Home</a></li>
+      <li><a href="centre-back.html">The Core 4</a></li>
+      <li><a href="highlights.html">Highlights</a></li>
+      <li><a href="appearances.html">Appearances</a></li>
+      <li><a href="bio.html">Bio</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero fi">
+    <div class="hero-photo">
+      <div class="ph-media" style="width:100%;height:100%;border-radius:0;border:none;">
+        <i class="fas fa-camera"></i>
+        <span>Action photo</span>
+        <small>Save Will's hero shot to site/img/will-action.jpg and wire it in here</small>
+      </div>
+    </div>
+    <div>
+      <div class="hero-eyebrow">Central Defender &middot; U21 Captain &middot; Marske United</div>
+      <h1>Will <span>Robinson</span></h1>
+      <p class="hero-sub">U21 captain at Marske United with eight first-team appearances across the last two seasons, now ready for the step up into men's football. A central defender built on the four things the position is judged on: <strong>winning the duel, winning the header, reading the danger and using the ball</strong>.</p>
+      <div class="hero-stats">
+        <div class="hero-stat is-ph"><strong>—</strong><small>Age</small></div>
+        <div class="hero-stat is-ph"><strong>—</strong><small>Height</small></div>
+        <div class="hero-stat is-ph"><strong>—</strong><small>Weight</small></div>
+        <div class="hero-stat"><strong>CB</strong><small>Position</small></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HUB: THE CORE 4 -->
+  <div class="hub">
+    <div class="hub-label">
+      <div class="on-dark-label">Video Evidence</div>
+      <h2 class="on-dark-h2">The Core 4</h2>
+      <p class="on-dark-p">The four traits a centre-back lives or dies by. Each petal opens the full breakdown with Will's match footage behind it.</p>
+    </div>
+
+    <!-- Desktop / tablet: 4-quadrant SVG hub -->
+    <div class="hub-stage fi">
+      <svg class="hub-svg" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Core 4 hub">
+        <defs>
+          <linearGradient id="pg-1" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#33302A"/><stop offset="100%" stop-color="#14120F"/>
+          </linearGradient>
+          <linearGradient id="pg-2" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#2B2823" stop-opacity="1"/><stop offset="100%" stop-color="#141310"/>
+          </linearGradient>
+          <linearGradient id="pg-3" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0%" stop-color="#383429" stop-opacity="1"/><stop offset="100%" stop-color="#1B1916"/>
+          </linearGradient>
+          <linearGradient id="pg-4" x1="1" y1="0" x2="0" y2="0">
+            <stop offset="0%" stop-color="#2B2823"/><stop offset="100%" stop-color="#141310"/>
+          </linearGradient>
+          <radialGradient id="petal-glow" cx="50%" cy="50%" r="70%">
+            <stop offset="0%" stop-color="#D9B23A" stop-opacity="0.10"/>
+            <stop offset="100%" stop-color="#050403" stop-opacity="0.55"/>
+          </radialGradient>
+        </defs>
+        <g class="petals">
+          <!-- 01 · 1v1 DEFENDING — top -->
+          <a href="centre-back.html#t1" class="petal" aria-label="1v1 Defending — read the analysis">
+            <path d="M 300.01 290.88 A 148 148 0 0 1 499.99 290.88 L 656.72 119.83 A 380 380 0 0 0 143.28 119.83 Z" fill="url(#pg-1)" class="petal-fill"/>
+            <path d="M 300.01 290.88 A 148 148 0 0 1 499.99 290.88 L 656.72 119.83 A 380 380 0 0 0 143.28 119.83 Z" fill="url(#petal-glow)"/>
+            <path d="M 300.01 290.88 A 148 148 0 0 1 499.99 290.88 L 656.72 119.83 A 380 380 0 0 0 143.28 119.83 Z" class="petal-stroke"/>
+            <g transform="translate(400 98)"><g class="petal-roundel"><circle r="24" fill="#D9B23A" stroke="#fff" stroke-width="2"/><text class="petal-num" text-anchor="middle" dy="5.5">01</text></g></g>
+            <text x="400" y="170" class="petal-title" text-anchor="middle"><tspan x="400" dy="0">1v1</tspan><tspan x="400" dy="19">Defending</tspan></text>
+          </a>
+          <!-- 02 · AERIAL DOMINANCE — right -->
+          <a href="centre-back.html#t2" class="petal" aria-label="Aerial Dominance — read the analysis">
+            <path d="M 509.12 300.01 A 148 148 0 0 1 509.12 499.99 L 680.17 656.72 A 380 380 0 0 0 680.17 143.28 Z" fill="url(#pg-2)" class="petal-fill"/>
+            <path d="M 509.12 300.01 A 148 148 0 0 1 509.12 499.99 L 680.17 656.72 A 380 380 0 0 0 680.17 143.28 Z" fill="url(#petal-glow)"/>
+            <path d="M 509.12 300.01 A 148 148 0 0 1 509.12 499.99 L 680.17 656.72 A 380 380 0 0 0 680.17 143.28 Z" class="petal-stroke"/>
+            <g transform="translate(714 400)"><g class="petal-roundel"><circle r="24" fill="#D9B23A" stroke="#fff" stroke-width="2"/><text class="petal-num" text-anchor="middle" dy="5.5">02</text></g></g>
+            <text x="610" y="392" class="petal-title" text-anchor="middle"><tspan x="610" dy="0">Aerial</tspan><tspan x="610" dy="19">Dominance</tspan></text>
+          </a>
+          <!-- 03 · INTERCEPTIONS & BLOCKS — bottom -->
+          <a href="centre-back.html#t3" class="petal" aria-label="Interceptions and Blocks — read the analysis">
+            <path d="M 499.99 509.12 A 148 148 0 0 1 300.01 509.12 L 143.28 680.17 A 380 380 0 0 0 656.72 680.17 Z" fill="url(#pg-3)" class="petal-fill"/>
+            <path d="M 499.99 509.12 A 148 148 0 0 1 300.01 509.12 L 143.28 680.17 A 380 380 0 0 0 656.72 680.17 Z" fill="url(#petal-glow)"/>
+            <path d="M 499.99 509.12 A 148 148 0 0 1 300.01 509.12 L 143.28 680.17 A 380 380 0 0 0 656.72 680.17 Z" class="petal-stroke"/>
+            <g transform="translate(400 702)"><g class="petal-roundel"><circle r="24" fill="#D9B23A" stroke="#fff" stroke-width="2"/><text class="petal-num" text-anchor="middle" dy="5.5">03</text></g></g>
+            <text x="400" y="600" class="petal-title" text-anchor="middle"><tspan x="400" dy="0">Interceptions</tspan><tspan x="400" dy="19">&amp; Blocks</tspan></text>
+          </a>
+          <!-- 04 · BALL-PLAYING — left -->
+          <a href="centre-back.html#t4" class="petal" aria-label="Ball-Playing — read the analysis">
+            <path d="M 290.88 499.99 A 148 148 0 0 1 290.88 300.01 L 119.83 143.28 A 380 380 0 0 0 119.83 656.72 Z" fill="url(#pg-4)" class="petal-fill"/>
+            <path d="M 290.88 499.99 A 148 148 0 0 1 290.88 300.01 L 119.83 143.28 A 380 380 0 0 0 119.83 656.72 Z" fill="url(#petal-glow)"/>
+            <path d="M 290.88 499.99 A 148 148 0 0 1 290.88 300.01 L 119.83 143.28 A 380 380 0 0 0 119.83 656.72 Z" class="petal-stroke"/>
+            <g transform="translate(86 400)"><g class="petal-roundel"><circle r="24" fill="#D9B23A" stroke="#fff" stroke-width="2"/><text class="petal-num" text-anchor="middle" dy="5.5">04</text></g></g>
+            <text x="190" y="392" class="petal-title" text-anchor="middle"><tspan x="190" dy="0">Ball</tspan><tspan x="190" dy="19">Playing</tspan></text>
+          </a>
+        </g>
+      </svg>
+
+      <!-- Centre disc -->
+      <a href="centre-back.html" class="hub-center">
+        <div class="num">4</div>
+        <div class="lbl">The Core 4</div>
+        <div class="sub">What makes a modern centre-back?</div>
+        <div class="cta">Read the analysis →</div>
+      </a>
+    </div>
+
+    <!-- Mobile fallback -->
+    <div class="hub-mobile">
+      <a href="centre-back.html" class="m-center">
+        <div class="num">4</div>
+        <div class="lbl">The Core 4</div>
+        <div class="cta">Read the analysis →</div>
+      </a>
+      <div class="hub-mobile-list">
+        <a href="centre-back.html#t1" class="m-tile">
+          <div class="m-tile-num">01</div>
+          <div class="m-tile-body"><h3>1v1 Defending</h3><p>Win the duel, force it wide</p></div>
+        </a>
+        <a href="centre-back.html#t2" class="m-tile">
+          <div class="m-tile-num">02</div>
+          <div class="m-tile-body"><h3>Aerial Dominance</h3><p>First to the ball in both boxes</p></div>
+        </a>
+        <a href="centre-back.html#t3" class="m-tile">
+          <div class="m-tile-num">03</div>
+          <div class="m-tile-body"><h3>Interceptions &amp; Blocks</h3><p>Read danger early, kill it</p></div>
+        </a>
+        <a href="centre-back.html#t4" class="m-tile">
+          <div class="m-tile-num">04</div>
+          <div class="m-tile-body"><h3>Ball-Playing</h3><p>Break the first line from the back</p></div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- NUMBERS — placeholder strip -->
+  <div class="numbers-section fi">
+    <div class="on-dark-label">The Numbers</div>
+    <h2 class="on-dark-h2">Defensive Record</h2>
+    <div class="numbers-card">
+      <span class="ph-chip"><i class="fas fa-pen"></i> Senior apps confirmed &middot; clean sheets, aerials and per-90s to follow</span>
+      <div class="numbers-grid">
+        <div class="stat-card">
+          <div class="s-label">Clean Sheets</div>
+          <div class="s-val ph-val">—</div>
+          <div class="s-detail">Season count to be added</div>
+        </div>
+        <div class="stat-card">
+          <div class="s-label">Senior Apps</div>
+          <div class="s-val">8</div>
+          <div class="s-detail">Marske United first team &middot; 2 in 24/25, 6 in 25/26</div>
+        </div>
+        <div class="stat-card">
+          <div class="s-label">Aerial Duels Won</div>
+          <div class="s-val ph-val">—</div>
+          <div class="s-detail">If tracked, goes here</div>
+        </div>
+        <div class="stat-card">
+          <div class="s-label">Goals Conceded /90</div>
+          <div class="s-val ph-val">—</div>
+          <div class="s-detail">With Will on the pitch</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPLORE -->
+  <div class="explore fi">
+    <div class="on-dark-label">Profile</div>
+    <h2 class="on-dark-h2">Explore Profile</h2>
+    <div class="explore-grid">
+      <a href="centre-back.html" class="explore-card">
+        <i class="fas fa-shield-halved"></i>
+        <h3>The Core 4</h3>
+        <p>What makes a modern centre-back, trait by trait.</p>
+      </a>
+      <a href="highlights.html" class="explore-card">
+        <i class="fas fa-play-circle"></i>
+        <h3>Highlights</h3>
+        <p>Match footage and highlight reels.</p>
+      </a>
+      <a href="appearances.html" class="explore-card">
+        <i class="fas fa-trophy"></i>
+        <h3>Appearances</h3>
+        <p>Career timeline, clubs and appearance data.</p>
+      </a>
+      <a href="bio.html" class="explore-card">
+        <i class="fas fa-user"></i>
+        <h3>Bio</h3>
+        <p>Who Will is, how he plays, his background.</p>
+      </a>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="contact-row fi">
+    <div class="contact-card">
+      <i class="fas fa-envelope"></i>
+      <h4>Email</h4>
+      <p>[Contact email to follow]</p>
+    </div>
+    <div class="contact-card">
+      <i class="fas fa-map-marker-alt"></i>
+      <h4>Location</h4>
+      <p>[Location to follow]</p>
+    </div>
+    <div class="contact-card">
+      <img src="img/badge-marske.png" alt="Marske United FC crest" style="width: 36px; height: 36px; object-fit: contain; margin: 0 auto 8px;">
+      <h4>Current Club</h4>
+      <p>Marske United FC</p>
+    </div>
+  </div>
+
+</div>
+
+<footer class="foot">
+  <div class="wrap"><p>&copy; 2026 Will Robinson</p></div>
+</footer>
+
+<script>
+const ham = document.getElementById('navHam');
+const links = document.getElementById('navLinks');
+if (ham) {
+  ham.addEventListener('click', () => links.classList.toggle('on'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('on')));
+}
+document.querySelectorAll('.fi').forEach(el => {
+  new IntersectionObserver((entries, obs) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }).observe(el);
+});
+</script>
+</body>
+</html>

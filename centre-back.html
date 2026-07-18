@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>The Core 4 — Will Robinson | Central Defender</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ═══ CORE 4 — page-specific ═══ */
+
+    /* Intro split */
+    .c4-intro {
+      background: var(--card); border: 1px solid var(--border-lt);
+      border-top: 3px solid var(--gold);
+      border-radius: 16px; padding: 40px;
+      margin-top: 18px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+      display: grid; grid-template-columns: 1.5fr 1fr; gap: 36px; align-items: center;
+    }
+    .c4-intro .lead { font-size: 0.98rem; color: var(--text-sec); line-height: 1.8; }
+    .c4-intro .lead strong { color: var(--text); }
+    .c4-intro-photo { aspect-ratio: 4/3; border-radius: 12px; overflow: hidden; }
+    .c4-intro-photo .ph-media { width: 100%; height: 100%; }
+
+    /* Switcher */
+    .c4-switch { margin-top: 18px; }
+    .c4-tabs {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+    }
+    .c4-tab {
+      display: flex; align-items: center; gap: 12px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 12px; padding: 12px 14px;
+      cursor: pointer; text-align: left;
+      transition: all 0.18s ease;
+    }
+    .c4-tab:hover { background: rgba(255,255,255,0.13); }
+    .c4-tab.active { background: var(--card); border-color: var(--gold); box-shadow: 0 6px 18px rgba(0,0,0,0.3); }
+    .c4-tab-num {
+      flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--coal), var(--coal-mid));
+      border: 2px solid rgba(217,178,58,0.5);
+      color: #fff; font-family: var(--font-display); font-size: 13px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .c4-tab.active .c4-tab-num { background: var(--gold); color: var(--coal-deep); border-color: var(--gold-deep); }
+    .c4-tab-title { font-size: 12.5px; font-weight: 800; color: rgba(255,255,255,0.9); line-height: 1.3; letter-spacing: 0.2px; }
+    .c4-tab.active .c4-tab-title { color: var(--text); }
+
+    /* Panels */
+    .c4-panels { margin-top: 14px; }
+    .c4-panel { display: none; }
+    .c4-panel.active { display: block; animation: fadeUp 0.35s ease; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .case {
+      background: var(--card); border: 1px solid var(--border-lt);
+      border-top: 3px solid var(--gold);
+      border-radius: 16px; padding: 36px 40px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+    }
+    .case-banner {
+      display: flex; align-items: center; gap: 18px;
+      padding-bottom: 18px; margin-bottom: 18px;
+      border-bottom: 1px solid var(--border-lt);
+    }
+    .case-banner .num {
+      font-family: var(--font-display);
+      font-size: 2.4rem; color: var(--gold); line-height: 1;
+    }
+    .case-banner .role {
+      display: block; font-size: 10px; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 1.8px;
+      color: var(--gold-deep); margin-bottom: 4px;
+    }
+    .case-banner h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem; font-weight: 400; color: var(--text);
+      text-transform: uppercase; letter-spacing: 0.3px; line-height: 1.2;
+    }
+    .case-lead { font-size: 0.92rem; color: var(--text-sec); line-height: 1.8; margin-bottom: 22px; }
+    .case-lead strong { color: var(--text); }
+
+    .case-video { margin-bottom: 22px; }
+    .case-video .ph-media { aspect-ratio: 16/9; }
+
+    .case-points { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .point-card {
+      background: var(--white); border: 1px solid var(--border-lt);
+      border-left: 4px solid var(--gold);
+      border-radius: 10px; padding: 16px 18px;
+    }
+    .point-card h4 { font-size: 0.8rem; font-weight: 800; color: var(--text); margin-bottom: 4px; }
+    .point-card p { font-size: 0.76rem; color: var(--text-sec); line-height: 1.55; }
+
+    @media (max-width: 900px) {
+      .c4-intro { grid-template-columns: 1fr; padding: 28px 24px; }
+      .c4-tabs { grid-template-columns: repeat(2, 1fr); }
+      .case { padding: 26px 22px; }
+      .case-points { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="wrap">
+    <a href="index.html" class="nav-brand">Will <em>Robinson</em></a>
+    <button class="nav-ham" id="navHam"><i class="fas fa-bars"></i></button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="centre-back.html" class="on">The Core 4</a></li>
+      <li><a href="highlights.html">Highlights</a></li>
+      <li><a href="appearances.html">Appearances</a></li>
+      <li><a href="bio.html">Bio</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="pg-header">
+  <div class="wrap">
+    <div class="pg-label">The Core 4</div>
+    <h1>What Makes a Modern Centre-Back?</h1>
+    <p>Four traits decide whether a centre-back can play: the duel, the header, the read and the pass. Half the job is stopping attacks; the other half is starting them. Here's each one broken down, each backed by Will's own match footage.</p>
+  </div>
+</div>
+
+<div class="wrap" style="padding: 0 40px;">
+
+  <!-- INTRO -->
+  <div class="c4-intro fi">
+    <div>
+      <p class="lead">
+        Centre-back is the most unforgiving position on the pitch. A midfielder loses the ball and someone covers. A striker misses and gets another chance a minute later. A centre-back makes one mistake and it's a goal. So the position gets judged on a short list of things done <strong>reliably, under pressure, every week</strong>: defend the duel, dominate the air, read danger before it becomes danger, and use the ball well enough that the team isn't playing 10 v 11 in possession.
+      </p>
+      <p class="lead" style="margin-top: 14px;">
+        And the job has doubled in size. Build-up now starts with the back line, so centre-backs see more of the ball than almost anyone on the pitch — <strong>no position's on-ball involvement has grown faster</strong> over the last decade. The modern centre-back defends his box and starts the attacks, in the same ninety minutes. Teams that don't have one play slower, flatter and easier to press.
+      </p>
+      <p class="lead" style="margin-top: 14px;">
+        This page breaks Will's game down against those four standards. Each section explains what the trait actually involves, then shows match footage from his senior appearances and U21 football at Marske United to back it up.
+      </p>
+    </div>
+    <div class="c4-intro-photo">
+      <div class="ph-media">
+        <i class="fas fa-camera"></i>
+        <span>Action photo</span>
+        <small>Save a defending shot to site/img/will-defending.jpg</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- SWITCHER -->
+  <div class="c4-switch fi">
+    <div class="c4-tabs" role="tablist" aria-label="The Core 4 traits">
+      <button class="c4-tab active" data-tab="1" id="t1" role="tab" aria-selected="true" type="button">
+        <div class="c4-tab-num">01</div>
+        <div class="c4-tab-title">1v1 Defending</div>
+      </button>
+      <button class="c4-tab" data-tab="2" id="t2" role="tab" aria-selected="false" type="button">
+        <div class="c4-tab-num">02</div>
+        <div class="c4-tab-title">Aerial Dominance</div>
+      </button>
+      <button class="c4-tab" data-tab="3" id="t3" role="tab" aria-selected="false" type="button">
+        <div class="c4-tab-num">03</div>
+        <div class="c4-tab-title">Interceptions &amp; Blocks</div>
+      </button>
+      <button class="c4-tab" data-tab="4" id="t4" role="tab" aria-selected="false" type="button">
+        <div class="c4-tab-num">04</div>
+        <div class="c4-tab-title">Ball-Playing</div>
+      </button>
+    </div>
+
+    <div class="c4-panels">
+
+      <!-- PANEL 1 — 1v1 DEFENDING -->
+      <div class="c4-panel active" data-panel="1" role="tabpanel">
+        <div class="case">
+          <div class="case-banner">
+            <span class="num">01</span>
+            <div>
+              <span class="role">What a modern centre-back needs to do</span>
+              <h3>Win the duel, force it wide</h3>
+            </div>
+          </div>
+          <p class="case-lead">Isolated against a runner, there's nowhere to hide. The good ones don't dive in — they <strong>show the attacker where to go</strong>, stay on their feet, match the first burst, and pick the moment the touch gets heavy. Recovery pace covers the rest. This is the trait scouts test first, because when it fails, everything behind it fails with it.</p>
+          <div class="case-video">
+            <div class="nv-frame" data-src="videos/core4-01-1v1-defending.mp4">
+              <img class="nv-poster" src="img/poster-core4-01.jpg" alt="1v1 Defending — match footage">
+              <span class="nv-tag">2:47</span>
+              <div class="nv-play"><i class="fas fa-play"></i></div>
+            </div>
+          </div>
+          <div class="case-points">
+            <div class="point-card"><h4>Body shape</h4><p>Side-on, showing the attacker away from goal, never square.</p></div>
+            <div class="point-card"><h4>Delay, don't dive</h4><p>Buying time for recovery runners beats a 50/50 lunge.</p></div>
+            <div class="point-card"><h4>The clean take</h4><p>Timing the tackle when the touch is loose — win it, keep it.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL 2 — AERIAL DOMINANCE -->
+      <div class="c4-panel" data-panel="2" role="tabpanel">
+        <div class="case">
+          <div class="case-banner">
+            <span class="num">02</span>
+            <div>
+              <span class="role">What a modern centre-back needs to do</span>
+              <h3>First to the ball in both boxes</h3>
+            </div>
+          </div>
+          <p class="case-lead">Every level of the game up to the top runs on aerial duels: long balls, second balls, corners at both ends. A centre-back who wins his headers <strong>kills the opposition's easiest route forward</strong> and becomes a threat from set pieces at the other end. It's attack of the ball, timing of the jump, and the appetite to go and win it again thirty seconds later.</p>
+          <div class="case-video">
+            <div class="nv-frame" data-src="videos/core4-02-aerial-dominance.mp4">
+              <img class="nv-poster" src="img/poster-core4-02.jpg" alt="Aerial Dominance — match footage">
+              <span class="nv-tag">2:09</span>
+              <div class="nv-play"><i class="fas fa-play"></i></div>
+            </div>
+          </div>
+          <div class="case-points">
+            <div class="point-card"><h4>Defensive box</h4><p>Dealing with crosses and direct balls, first contact every time.</p></div>
+            <div class="point-card"><h4>Out of the air, into control</h4><p>Not just heading it away — heading it to a teammate.</p></div>
+            <div class="point-card"><h4>Set-piece threat</h4><p>Attacking corners and free kicks at the other end.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL 3 — INTERCEPTIONS & BLOCKS -->
+      <div class="c4-panel" data-panel="3" role="tabpanel">
+        <div class="case">
+          <div class="case-banner">
+            <span class="num">03</span>
+            <div>
+              <span class="role">What a modern centre-back needs to do</span>
+              <h3>Read danger early, kill it before it grows</h3>
+            </div>
+          </div>
+          <p class="case-lead">The best defending never looks dramatic. It's the pass cut out before the striker turns, the covering step that closes the channel, the <strong>body on the line when the shot finally comes</strong>. Interceptions and blocks are what game-reading looks like on film: proof a defender sees the picture a second earlier than the player he's marking.</p>
+          <div class="case-video">
+            <div class="nv-frame" data-src="videos/core4-03-interceptions-blocks.mp4">
+              <img class="nv-poster" src="img/poster-core4-03.jpg" alt="Interceptions and Blocks — match footage">
+              <span class="nv-tag">3:21</span>
+              <div class="nv-play"><i class="fas fa-play"></i></div>
+            </div>
+          </div>
+          <div class="case-points">
+            <div class="point-card"><h4>Cutting the line</h4><p>Stepping in front to intercept the pass into feet.</p></div>
+            <div class="point-card"><h4>Covering ground</h4><p>Sweeping behind the line and across the channels.</p></div>
+            <div class="point-card"><h4>The block</h4><p>Last-line commitment — body in the way of the shot.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL 4 — BALL-PLAYING -->
+      <div class="c4-panel" data-panel="4" role="tabpanel">
+        <div class="case">
+          <div class="case-banner">
+            <span class="num">04</span>
+            <div>
+              <span class="role">What a modern centre-back needs to do</span>
+              <h3>Break the first line from the back</h3>
+            </div>
+          </div>
+          <p class="case-lead">The modern game asks centre-backs to start attacks, not just stop them — and they get the ball enough to prove it, with as many touches in a possession side as any midfielder. That means <strong>taking the ball under pressure, playing through the press</strong>, and picking the forward pass when it's on rather than the safe sideways ball every time. A defender who can't use it puts a ceiling on the whole team's build-up.</p>
+          <div class="case-video">
+            <div class="nv-frame" data-src="videos/core4-04-ball-playing.mp4">
+              <img class="nv-poster" src="img/poster-core4-04.jpg" alt="Ball-Playing — match footage">
+              <span class="nv-tag">4:53</span>
+              <div class="nv-play"><i class="fas fa-play"></i></div>
+            </div>
+          </div>
+          <div class="case-points">
+            <div class="point-card"><h4>Composure on the ball</h4><p>Receiving under pressure without panicking it long.</p></div>
+            <div class="point-card"><h4>Breaking lines</h4><p>The pass between the lines that takes out the first press.</p></div>
+            <div class="point-card"><h4>Range</h4><p>The switch or the diagonal when the picture opens up.</p></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<footer class="foot">
+  <div class="wrap"><p>&copy; 2026 Will Robinson</p></div>
+</footer>
+
+<script>
+const ham = document.getElementById('navHam');
+const links = document.getElementById('navLinks');
+if (ham) {
+  ham.addEventListener('click', () => links.classList.toggle('on'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('on')));
+}
+document.querySelectorAll('.fi').forEach(el => {
+  new IntersectionObserver((entries, obs) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }).observe(el);
+});
+
+// Native video click-to-play
+document.querySelectorAll('.nv-frame').forEach(frame => {
+  frame.addEventListener('click', () => {
+    if (frame.dataset.playing) return;
+    frame.dataset.playing = '1';
+    const v = document.createElement('video');
+    v.src = frame.dataset.src;
+    v.controls = true; v.autoplay = true; v.playsInline = true;
+    v.preload = 'metadata';
+    frame.innerHTML = '';
+    frame.appendChild(v);
+  });
+});
+
+// Tab switcher + deep-linking (#t1..#t4 from the home page petals)
+(() => {
+  const tabs = document.querySelectorAll('.c4-tab');
+  const panels = document.querySelectorAll('.c4-panel');
+  function activate(n) {
+    tabs.forEach(t => {
+      const on = t.dataset.tab === String(n);
+      t.classList.toggle('active', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    panels.forEach(p => p.classList.toggle('active', p.dataset.panel === String(n)));
+  }
+  tabs.forEach(t => t.addEventListener('click', () => activate(t.dataset.tab)));
+  const m = location.hash.match(/^#t([1-4])$/);
+  if (m) {
+    activate(m[1]);
+    setTimeout(() => document.querySelector('.c4-switch').scrollIntoView({ behavior: 'smooth', block: 'start' }), 60);
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Highlights — Will Robinson | Match Footage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* HIGHLIGHTS — page-specific */
+    .panel {
+      background: var(--card); border: 1px solid var(--border-lt);
+      border-top: 3px solid var(--gold);
+      border-radius: 16px; margin-top: 18px;
+      padding: 30px 34px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+    }
+    .panel-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 11px; font-weight: 800; letter-spacing: 1.8px;
+      text-transform: uppercase; color: var(--gold-deep);
+      margin-bottom: 8px;
+    }
+    .panel-eyebrow::before { content: ''; width: 26px; height: 3px; background: var(--gold); border-radius: 2px; }
+    .panel h2 {
+      font-family: var(--font-display);
+      font-size: 1.25rem; font-weight: 400; color: var(--text);
+      text-transform: uppercase; letter-spacing: 0.3px; line-height: 1.2;
+      margin-bottom: 6px;
+    }
+    .panel .panel-sub {
+      font-size: 0.88rem; color: var(--text-sec);
+      line-height: 1.6; margin-bottom: 18px; max-width: 700px;
+    }
+    .hero-slot .ph-media { aspect-ratio: 16/9; }
+    .pl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .pl-grid .ph-media { aspect-ratio: 16/9; }
+    @media (max-width: 760px) {
+      .pl-grid { grid-template-columns: 1fr; }
+      .panel { padding: 24px 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="wrap">
+    <a href="index.html" class="nav-brand">Will <em>Robinson</em></a>
+    <button class="nav-ham" id="navHam"><i class="fas fa-bars"></i></button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="centre-back.html">The Core 4</a></li>
+      <li><a href="highlights.html" class="on">Highlights</a></li>
+      <li><a href="appearances.html">Appearances</a></li>
+      <li><a href="bio.html">Bio</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="pg-header">
+  <div class="wrap">
+    <div class="pg-label">Video</div>
+    <h1>Highlights &amp; Match Footage</h1>
+    <p>The four Core 4 trait films are live on <a href="centre-back.html" style="color: var(--gold); font-weight: 700;">The Core 4</a> page. This page is for the featured reel and full matches — placeholders below until they're ready.</p>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- FEATURED -->
+  <div class="panel fi">
+    <div class="panel-eyebrow">Featured Reel</div>
+    <h2>Season Highlights</h2>
+    <p class="panel-sub">The headline reel — Will's best moments from senior and U21 football in one cut. Best single showcase of his game.</p>
+    <div class="hero-slot">
+      <div class="ph-media">
+        <i class="fab fa-youtube"></i>
+        <span>Video placeholder — featured highlight reel</span>
+        <small>Save the reel to site/videos (under 100MB) and it gets wired in here like the Core 4 films</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- FULL MATCHES -->
+  <div class="panel fi">
+    <div class="panel-eyebrow">Full Matches</div>
+    <h2>Full Games</h2>
+    <p class="panel-sub">Complete match footage for scouts who want the 90 minutes, not just the cut.</p>
+    <div class="hero-slot">
+      <div class="ph-media">
+        <i class="fab fa-youtube"></i>
+        <span>Playlist placeholder — full matches</span>
+        <small>Create a YouTube playlist of full games and paste the playlist link in here</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- REELS BY SEASON -->
+  <div class="panel fi">
+    <div class="panel-eyebrow">By Season</div>
+    <h2>Highlight Reels by Season</h2>
+    <p class="panel-sub">Season-by-season reels across U21 and senior minutes, as they're cut.</p>
+    <div class="pl-grid">
+      <div class="ph-media">
+        <i class="fab fa-youtube"></i>
+        <span>Playlist placeholder — 2025/26</span>
+        <small>Paste the playlist link in here</small>
+      </div>
+      <div class="ph-media">
+        <i class="fab fa-youtube"></i>
+        <span>Playlist placeholder — 2024/25</span>
+        <small>Paste the playlist link in here</small>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /wrap -->
+
+<!-- FOOTER -->
+<footer class="foot">
+  <div class="wrap"><p>&copy; 2026 Will Robinson</p></div>
+</footer>
+
+<script>
+const ham = document.getElementById('navHam');
+const links = document.getElementById('navLinks');
+if (ham) {
+  ham.addEventListener('click', () => links.classList.toggle('on'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('on')));
+}
+document.querySelectorAll('.fi').forEach(el => {
+  new IntersectionObserver((entries, obs) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }).observe(el);
+});
+</script>
+</body>
+</html>
