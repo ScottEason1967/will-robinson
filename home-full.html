@@ -4,8 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <title>Will Robinson — Centre Back | The Core 4</title>
-  <meta name="description" content="Will Robinson, centre back. U21 captain at Marske United with eight first-team appearances. Watch the Core 4: match footage of the four traits a modern centre-back is judged on.">
+  <title>Will Robinson — Central Defender | The Core 4</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
@@ -50,24 +49,6 @@
     .hero-stat strong { display: block; font-family: var(--font-display); font-size: 1.35rem; font-weight: 400; color: #fff; }
     .hero-stat small { font-size: 0.56rem; color: rgba(255,255,255,0.65); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; }
     .hero-stat.is-ph strong { color: rgba(255,255,255,0.4); }
-
-    /* HOLDING PAGE */
-    .hold-head { padding: 26px 0 6px; text-align: center; }
-    .hold-brand { font-family: var(--font-display); font-size: 1.1rem; color: #fff; text-transform: uppercase; letter-spacing: 1.5px; }
-    .hold-brand em { font-style: normal; color: var(--gold); }
-    .hold-intro { text-align: center; margin: 26px auto 46px; max-width: 720px; }
-    .hold-rule { width: 84px; height: 5px; background: var(--gold); border-radius: 3px; margin: 0 auto 20px; }
-    .hold-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-bottom: 14px; }
-    .hold-intro h1 { font-family: var(--font-display); font-size: clamp(40px, 7vw, 64px); font-weight: 400; line-height: 1.02; color: #fff; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 18px; }
-    .hold-intro h1 span { color: var(--gold); }
-    .hold-sub { font-size: 16px; color: rgba(255,255,255,0.9); line-height: 1.68; margin: 0 auto 18px; max-width: 620px; }
-    .hold-sub strong { color: #fff; font-weight: 700; }
-    .hold-soon {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 6px 14px; border: 1px solid rgba(217,178,58,0.5); border-radius: 4px;
-      color: var(--gold); font-size: 11px; font-weight: 800;
-      text-transform: uppercase; letter-spacing: 2px;
-    }
 
     /* SECTION LABELS on dark */
     .on-dark-label {
@@ -263,20 +244,43 @@
 </head>
 <body>
 
-<!-- HOLDING HEADER -->
-<header class="hold-head">
-  <span class="hold-brand">Will <em>Robinson</em></span>
-</header>
+<!-- NAV -->
+<nav class="nav">
+  <div class="wrap">
+    <a href="index.html" class="nav-brand">Will <em>Robinson</em></a>
+    <button class="nav-ham" id="navHam"><i class="fas fa-bars"></i></button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="on">Home</a></li>
+      <li><a href="centre-back.html">The Core 4</a></li>
+      <li><a href="highlights.html">Highlights</a></li>
+      <li><a href="appearances.html">Appearances</a></li>
+      <li><a href="bio.html">Bio</a></li>
+    </ul>
+  </div>
+</nav>
 
 <div class="page">
 
-  <!-- HOLDING INTRO -->
-  <div class="hold-intro fi">
-    <div class="hold-rule"></div>
-    <div class="hold-eyebrow">Central Defender &middot; U21 Captain &middot; Marske United</div>
-    <h1>Will <span>Robinson</span></h1>
-    <p class="hold-sub">U21 captain at Marske United with eight first-team appearances across the last two seasons, now ready for the step up into men's football. Built on the four things the position is judged on: <strong>the duel, the header, the read and the pass</strong>.</p>
-    <span class="hold-soon"><i class="fas fa-hammer"></i> Full profile launching soon</span>
+  <!-- HERO -->
+  <div class="hero fi">
+    <div class="hero-photo">
+      <div class="ph-media" style="width:100%;height:100%;border-radius:0;border:none;">
+        <i class="fas fa-camera"></i>
+        <span>Action photo</span>
+        <small>Save Will's hero shot to site/img/will-action.jpg and wire it in here</small>
+      </div>
+    </div>
+    <div>
+      <div class="hero-eyebrow">Central Defender &middot; U21 Captain &middot; Marske United</div>
+      <h1>Will <span>Robinson</span></h1>
+      <p class="hero-sub">U21 captain at Marske United with eight first-team appearances across the last two seasons, now ready for the step up into men's football. A central defender built on the four things the position is judged on: <strong>winning the duel, winning the header, reading the danger and using the ball</strong>.</p>
+      <div class="hero-stats">
+        <div class="hero-stat is-ph"><strong>—</strong><small>Age</small></div>
+        <div class="hero-stat is-ph"><strong>—</strong><small>Height</small></div>
+        <div class="hero-stat is-ph"><strong>—</strong><small>Weight</small></div>
+        <div class="hero-stat"><strong>CB</strong><small>Position</small></div>
+      </div>
+    </div>
   </div>
 
   <!-- HUB: THE CORE 4 -->
@@ -284,7 +288,7 @@
     <div class="hub-label">
       <div class="on-dark-label">Video Evidence</div>
       <h2 class="on-dark-h2">The Core 4</h2>
-      <p class="on-dark-p">The four traits a centre-back lives or dies by. Click a petal to play the film — footage from senior appearances and U21 football at Marske United.</p>
+      <p class="on-dark-p">The four traits a centre-back lives or dies by. Click a petal to play the film. The full written breakdown is on The Core 4 page.</p>
     </div>
 
     <!-- Desktop / tablet: 4-quadrant SVG hub -->
@@ -314,7 +318,7 @@
         </defs>
         <g class="petals">
           <!-- 01 · 1v1 DEFENDING — top -->
-          <a class="petal" data-video="videos/core4-01-1v1-defending.mp4" data-poster="img/poster-core4-01.jpg" data-vtitle="01 · 1v1 Defending" aria-label="1v1 Defending — play the film">
+          <a href="centre-back.html#t1" class="petal" data-video="videos/core4-01-1v1-defending.mp4" data-poster="img/poster-core4-01.jpg" data-vtitle="01 · 1v1 Defending" aria-label="1v1 Defending — play the film">
             <path d="M 297.49 293.25 A 148 148 0 0 1 502.51 293.25 L 666.57 129.19 A 380 380 0 0 0 133.43 129.19 Z" fill="url(#pp-1)" class="petal-fill"/>
             <path d="M 297.49 293.25 A 148 148 0 0 1 502.51 293.25 L 666.57 129.19 A 380 380 0 0 0 133.43 129.19 Z" fill="url(#petal-glow)"/>
             <path d="M 297.49 293.25 A 148 148 0 0 1 502.51 293.25 L 666.57 129.19 A 380 380 0 0 0 133.43 129.19 Z" class="petal-stroke"/>
@@ -322,7 +326,7 @@
             <text x="400" y="170" class="petal-title" text-anchor="middle"><tspan x="400" dy="0">1v1</tspan><tspan x="400" dy="19">Defending</tspan></text>
           </a>
           <!-- 02 · AERIAL DOMINANCE — right -->
-          <a class="petal" data-video="videos/core4-02-aerial-dominance.mp4" data-poster="img/poster-core4-02.jpg" data-vtitle="02 · Aerial Dominance" aria-label="Aerial Dominance — play the film">
+          <a href="centre-back.html#t2" class="petal" data-video="videos/core4-02-aerial-dominance.mp4" data-poster="img/poster-core4-02.jpg" data-vtitle="02 · Aerial Dominance" aria-label="Aerial Dominance — play the film">
             <path d="M 506.75 297.49 A 148 148 0 0 1 506.75 502.51 L 670.81 666.57 A 380 380 0 0 0 670.81 133.43 Z" fill="url(#pp-2)" class="petal-fill"/>
             <path d="M 506.75 297.49 A 148 148 0 0 1 506.75 502.51 L 670.81 666.57 A 380 380 0 0 0 670.81 133.43 Z" fill="url(#petal-glow)"/>
             <path d="M 506.75 297.49 A 148 148 0 0 1 506.75 502.51 L 670.81 666.57 A 380 380 0 0 0 670.81 133.43 Z" class="petal-stroke"/>
@@ -330,7 +334,7 @@
             <text x="622" y="392" class="petal-title petal-title-side" text-anchor="middle"><tspan x="622" dy="0">Aerial</tspan><tspan x="622" dy="18">Dominance</tspan></text>
           </a>
           <!-- 03 · INTERCEPTIONS & BLOCKS — bottom -->
-          <a class="petal" data-video="videos/core4-03-interceptions-blocks.mp4" data-poster="img/poster-core4-03.jpg" data-vtitle="03 · Interceptions &amp; Blocks" aria-label="Interceptions and Blocks — play the film">
+          <a href="centre-back.html#t3" class="petal" data-video="videos/core4-03-interceptions-blocks.mp4" data-poster="img/poster-core4-03.jpg" data-vtitle="03 · Interceptions &amp; Blocks" aria-label="Interceptions and Blocks — play the film">
             <path d="M 502.51 506.75 A 148 148 0 0 1 297.49 506.75 L 133.43 670.81 A 380 380 0 0 0 666.57 670.81 Z" fill="url(#pp-3)" class="petal-fill"/>
             <path d="M 502.51 506.75 A 148 148 0 0 1 297.49 506.75 L 133.43 670.81 A 380 380 0 0 0 666.57 670.81 Z" fill="url(#petal-glow)"/>
             <path d="M 502.51 506.75 A 148 148 0 0 1 297.49 506.75 L 133.43 670.81 A 380 380 0 0 0 666.57 670.81 Z" class="petal-stroke"/>
@@ -338,7 +342,7 @@
             <text x="400" y="600" class="petal-title" text-anchor="middle"><tspan x="400" dy="0">Interceptions</tspan><tspan x="400" dy="19">&amp; Blocks</tspan></text>
           </a>
           <!-- 04 · BALL-PLAYING — left -->
-          <a class="petal" data-video="videos/core4-04-ball-playing.mp4" data-poster="img/poster-core4-04.jpg" data-vtitle="04 · Ball-Playing" aria-label="Ball-Playing — play the film">
+          <a href="centre-back.html#t4" class="petal" data-video="videos/core4-04-ball-playing.mp4" data-poster="img/poster-core4-04.jpg" data-vtitle="04 · Ball-Playing" aria-label="Ball-Playing — play the film">
             <path d="M 293.25 502.51 A 148 148 0 0 1 293.25 297.49 L 129.19 133.43 A 380 380 0 0 0 129.19 666.57 Z" fill="url(#pp-4)" class="petal-fill"/>
             <path d="M 293.25 502.51 A 148 148 0 0 1 293.25 297.49 L 129.19 133.43 A 380 380 0 0 0 129.19 666.57 Z" fill="url(#petal-glow)"/>
             <path d="M 293.25 502.51 A 148 148 0 0 1 293.25 297.49 L 129.19 133.43 A 380 380 0 0 0 129.19 666.57 Z" class="petal-stroke"/>
@@ -349,35 +353,35 @@
       </svg>
 
       <!-- Centre disc -->
-      <div class="hub-center" style="cursor: default;">
+      <a href="centre-back.html" class="hub-center">
         <div class="num">4</div>
         <div class="lbl">The Core 4</div>
         <div class="sub">What makes a modern centre-back?</div>
-        <div class="cta">Full analysis coming soon</div>
-      </div>
+        <div class="cta">Read the analysis →</div>
+      </a>
     </div>
 
     <!-- Mobile fallback -->
     <div class="hub-mobile">
-      <div class="m-center">
+      <a href="centre-back.html" class="m-center">
         <div class="num">4</div>
         <div class="lbl">The Core 4</div>
-        <div class="cta">Full analysis coming soon</div>
-      </div>
+        <div class="cta">Read the analysis →</div>
+      </a>
       <div class="hub-mobile-list">
-        <a class="m-tile" data-video="videos/core4-01-1v1-defending.mp4" data-poster="img/poster-core4-01.jpg" data-vtitle="01 · 1v1 Defending">
+        <a href="centre-back.html#t1" class="m-tile" data-video="videos/core4-01-1v1-defending.mp4" data-poster="img/poster-core4-01.jpg" data-vtitle="01 · 1v1 Defending">
           <div class="m-tile-thumb"><img src="img/petal-01.jpg" alt=""><span class="m-thumb-num">01</span></div>
           <div class="m-tile-body"><h3>1v1 Defending</h3><p>Win the duel, force it wide</p></div>
         </a>
-        <a class="m-tile" data-video="videos/core4-02-aerial-dominance.mp4" data-poster="img/poster-core4-02.jpg" data-vtitle="02 · Aerial Dominance">
+        <a href="centre-back.html#t2" class="m-tile" data-video="videos/core4-02-aerial-dominance.mp4" data-poster="img/poster-core4-02.jpg" data-vtitle="02 · Aerial Dominance">
           <div class="m-tile-thumb"><img src="img/petal-02.jpg" alt=""><span class="m-thumb-num">02</span></div>
           <div class="m-tile-body"><h3>Aerial Dominance</h3><p>First to the ball in both boxes</p></div>
         </a>
-        <a class="m-tile" data-video="videos/core4-03-interceptions-blocks.mp4" data-poster="img/poster-core4-03.jpg" data-vtitle="03 · Interceptions &amp; Blocks">
+        <a href="centre-back.html#t3" class="m-tile" data-video="videos/core4-03-interceptions-blocks.mp4" data-poster="img/poster-core4-03.jpg" data-vtitle="03 · Interceptions &amp; Blocks">
           <div class="m-tile-thumb"><img src="img/petal-03.jpg" alt=""><span class="m-thumb-num">03</span></div>
           <div class="m-tile-body"><h3>Interceptions &amp; Blocks</h3><p>Read danger early, kill it</p></div>
         </a>
-        <a class="m-tile" data-video="videos/core4-04-ball-playing.mp4" data-poster="img/poster-core4-04.jpg" data-vtitle="04 · Ball-Playing">
+        <a href="centre-back.html#t4" class="m-tile" data-video="videos/core4-04-ball-playing.mp4" data-poster="img/poster-core4-04.jpg" data-vtitle="04 · Ball-Playing">
           <div class="m-tile-thumb"><img src="img/petal-04.jpg" alt=""><span class="m-thumb-num">04</span></div>
           <div class="m-tile-body"><h3>Ball-Playing</h3><p>Break the first line from the back</p></div>
         </a>
@@ -385,10 +389,88 @@
     </div>
   </div>
 
+  <!-- NUMBERS — placeholder strip -->
+  <div class="numbers-section fi">
+    <div class="on-dark-label">The Numbers</div>
+    <h2 class="on-dark-h2">Defensive Record</h2>
+    <div class="numbers-card">
+      <span class="ph-chip"><i class="fas fa-pen"></i> Senior apps confirmed &middot; clean sheets, aerials and per-90s to follow</span>
+      <div class="numbers-grid">
+        <div class="stat-card">
+          <div class="s-label">Clean Sheets</div>
+          <div class="s-val ph-val">—</div>
+          <div class="s-detail">Season count to be added</div>
+        </div>
+        <div class="stat-card">
+          <div class="s-label">Senior Apps</div>
+          <div class="s-val">8</div>
+          <div class="s-detail">Marske United first team &middot; 2 in 24/25, 6 in 25/26</div>
+        </div>
+        <div class="stat-card">
+          <div class="s-label">Aerial Duels Won</div>
+          <div class="s-val ph-val">—</div>
+          <div class="s-detail">If tracked, goes here</div>
+        </div>
+        <div class="stat-card">
+          <div class="s-label">Goals Conceded /90</div>
+          <div class="s-val ph-val">—</div>
+          <div class="s-detail">With Will on the pitch</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPLORE -->
+  <div class="explore fi">
+    <div class="on-dark-label">Profile</div>
+    <h2 class="on-dark-h2">Explore Profile</h2>
+    <div class="explore-grid">
+      <a href="centre-back.html" class="explore-card">
+        <i class="fas fa-shield-halved"></i>
+        <h3>The Core 4</h3>
+        <p>What makes a modern centre-back, trait by trait.</p>
+      </a>
+      <a href="highlights.html" class="explore-card">
+        <i class="fas fa-play-circle"></i>
+        <h3>Highlights</h3>
+        <p>Match footage and highlight reels.</p>
+      </a>
+      <a href="appearances.html" class="explore-card">
+        <i class="fas fa-trophy"></i>
+        <h3>Appearances</h3>
+        <p>Career timeline, clubs and appearance data.</p>
+      </a>
+      <a href="bio.html" class="explore-card">
+        <i class="fas fa-user"></i>
+        <h3>Bio</h3>
+        <p>Who Will is, how he plays, his background.</p>
+      </a>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="contact-row fi">
+    <div class="contact-card">
+      <i class="fas fa-envelope"></i>
+      <h4>Email</h4>
+      <p>[Contact email to follow]</p>
+    </div>
+    <div class="contact-card">
+      <i class="fas fa-map-marker-alt"></i>
+      <h4>Location</h4>
+      <p>[Location to follow]</p>
+    </div>
+    <div class="contact-card">
+      <img src="img/badge-marske.png" alt="Marske United FC crest" style="width: 36px; height: 36px; object-fit: contain; margin: 0 auto 8px;">
+      <h4>Current Club</h4>
+      <p>Marske United FC</p>
+    </div>
+  </div>
+
 </div>
 
 <footer class="foot">
-  <div class="wrap"><p>&copy; 2026 Will Robinson &middot; Full site launching soon</p></div>
+  <div class="wrap"><p>&copy; 2026 Will Robinson</p></div>
 </footer>
 
 <!-- VIDEO MODAL -->
